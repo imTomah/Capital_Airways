@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Flight;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FlightRepository")
@@ -28,6 +30,12 @@ class Flight
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min=90,
+     *      max=500,
+     *      minMessage = "Minimum 100",
+     *      maxMessage = "Maximum 300"
+     * )
      */
     private $price;
 
@@ -38,6 +46,13 @@ class Flight
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Nombre de sièges entre 20 et 50")
+     * @Assert\Range(
+     *      min=20,
+     *      max=50,
+     *      minMessage="Minimum 20",
+     *      maxMessage="Maximum 50"
+     * )
      */
     private $seat;
 
@@ -50,6 +65,7 @@ class Flight
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\City")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotEqualTo(propertyPath="arrival", message="Le depart et l'arrivée doivent être différents")
      */
     private $departure;
 

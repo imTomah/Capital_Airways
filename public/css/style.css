@@ -1,0 +1,14 @@
+header{
+    height: 200px;
+    background-image: url(../img/terminal_airport.jpeg);
+    background-size: cover;
+    background-position: center;
+}
+
+.complet {
+    color: orangered;
+}
+
+.promo {
+    color: green;
+}
